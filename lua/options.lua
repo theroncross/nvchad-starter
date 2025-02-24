@@ -17,3 +17,5 @@ vim.wo.relativenumber = true
 -- improves Neorg rendering
 vim.wo.conceallevel = 1
 vim.wo.concealcursor = "nc"
+
+vim.opt.fixeol = false

@@ -51,7 +51,7 @@ map(
 
 -- lsp
 map("n", "<leader>ra", function()
-  vim.lsp.buf.rename()
+  return ":IncRename " .. vim.fn.expand("<cword>")
 end, { desc = "Rename" })
 
 map("n", "<leader>e", function()

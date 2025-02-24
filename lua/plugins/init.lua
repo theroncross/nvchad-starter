@@ -25,26 +25,13 @@ return {
   -- 		},
   -- 	},
   -- },
-
-  -- override plugin configs
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        -- lua stuff
-        "lua-language-server",
-        "stylua",
-
-        -- web dev stuff
-        "eslint",
-        "css-lsp",
-        "html-lsp",
-        "typescript-language-server",
-        "prettier",
-        "ember-language-server",
-        "marksman",
-      },
-    },
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "configs.lspconfig"
+    end, -- Override to setup mason-lspconfig
   },
 
   {
@@ -59,10 +46,13 @@ return {
         "html",
         "javascript",
         "lua",
+        "markdown",
         "norg",
         "typescript",
         "vim",
-        "marksman",
+      },
+      highlight = {
+        enable = true,
       },
       indent = {
         enable = true,
@@ -76,6 +66,12 @@ return {
       },
     },
   },
+  -- {
+  --   "smjonas/inc-rename.nvim",
+  --   config = function()
+  --     require("inc_rename").setup()
+  --   end,
+  -- },
 
   -- Show context as top line
   { "nvim-treesitter/nvim-treesitter-context", opts = {} },
@@ -112,20 +108,8 @@ return {
       -- or run <leader>ch to see copilot mapping section
     end,
   },
-  {
-    {
-      "CopilotC-Nvim/CopilotChat.nvim",
-      lazy = false,
-      branch = "canary",
-      dependencies = {
-        { "github/copilot.vim" },
-        { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-      },
-      opts = {},
-    },
-  },
 
-  { "christoomey/vim-tmux-navigator", lazy = false },
+  { "christoomey/vim-tmux-navigator", enabled = false, lazy = false },
   {
     "hrsh7th/nvim-cmp",
     opts = {
