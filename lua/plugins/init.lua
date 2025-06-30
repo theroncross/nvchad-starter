@@ -26,7 +26,6 @@ return {
   -- 	},
   -- },
   { "williamboman/mason.nvim" },
-  { "williamboman/mason-lspconfig.nvim" },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -47,7 +46,7 @@ return {
         "javascript",
         "lua",
         "markdown",
-        "norg",
+        -- "norg",
         "typescript",
         "vim",
       },
