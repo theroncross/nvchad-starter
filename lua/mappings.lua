@@ -18,7 +18,7 @@ map("n", "N", "Nzzzv", { desc = "Prev occurrence, centered" })
 map("n", "-", "<cmd> Oil <CR>", { desc = "Open parent directory in Oil" })
 map("n", "<leader>fd", function()
   require("conform").format { async = true }
-end, { desc = "Open parent directory in Oil" })
+end, { desc = "Format buffer" })
 
 -- Telescope
 map("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
@@ -26,6 +26,8 @@ map("n", "<leader>ss", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" })
 map("n", "<leader>sw", "<cmd> Telescope grep_string <CR>", { desc = "Search word" })
 map("n", "<leader>sd", "<cmd> Telescope diagnostics <CR>", { desc = "Search diagnostics" })
 map("n", "<leader><space>", "<cmd> Telescope buffers <CR>", { desc = "Search buffers" })
+
+map("n", "<leader>gd", "<cmd> Telescope lsp_definitions <CR>", { desc = "Go to definition" })
 
 -- Diagnostic
 map("n", "<leader>dp", function()
@@ -37,17 +39,6 @@ end, { desc = "Go to next diagnostic message" })
 map("n", "<leader>do", function()
   vim.diagnostic.open_float()
 end, { desc = "Open floating diagnostic message" })
-
--- copilot
-map(
-  "i",
-  "<C-a>",
-  function()
-    vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-  end,
-  { desc = "Copilot Accept" }
-  -- {replace_keycodes = true, nowait=true, silent=true, expr=true, noremap=true}
-)
 
 -- lsp
 map("n", "<leader>ra", function()

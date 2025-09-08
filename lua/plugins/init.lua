@@ -1,11 +1,9 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -13,26 +11,7 @@ return {
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
-
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
   { "williamboman/mason.nvim" },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
-  },
-
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -65,12 +44,6 @@ return {
       },
     },
   },
-  -- {
-  --   "smjonas/inc-rename.nvim",
-  --   config = function()
-  --     require("inc_rename").setup()
-  --   end,
-  -- },
 
   -- Show context as top line
   { "nvim-treesitter/nvim-treesitter-context", opts = {} },
@@ -88,11 +61,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
-  {
-    "max397574/better-escape.nvim",
-    enabled = false,
-  },
-
   { "tpope/vim-fugitive", lazy = false },
 
   {
@@ -100,15 +68,16 @@ return {
     lazy = false,
     config = function()
       -- Mapping tab is already used by NvChad
+      vim.keymap.set('i', '<C-a>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false
+      })
       vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.g.copilot_tab_fallback = ""
       -- The mapping is set to other key, see custom/lua/mappings
       -- or run <leader>ch to see copilot mapping section
     end,
   },
 
-  { "christoomey/vim-tmux-navigator", enabled = false, lazy = false },
   {
     "hrsh7th/nvim-cmp",
     opts = {
@@ -126,6 +95,9 @@ return {
       },
     },
   },
+
+  -- test new blink
+  -- { import = "nvchad.blink.lazyspec" },
 
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth", lazy = false },
